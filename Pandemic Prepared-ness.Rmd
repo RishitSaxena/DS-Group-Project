@@ -6,4 +6,17 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r load-data}
+covid_data <- read.csv("https://wzb-ipi.github.io/corona/df_full.csv"
+)
 
+covid_data
+```
+```{r libraries}
+library(tidyverse)
+```
+
+```{r plot-preparedness}
+ggplot(covid_data, mapping = aes(x = date, y = cases, group = country, color = pandemic_prep)) +
+  geom_line()
+```
