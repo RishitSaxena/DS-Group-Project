@@ -9,15 +9,31 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r load-data}
 covid_data <- read.csv("https://wzb-ipi.github.io/corona/df_full.csv"
 )
-
-covid_data
 ```
 ```{r libraries}
 library(tidyverse)
+library(glue)
+library(lubridate)
+```
+```{r modify-dates}
+covid_data <- covid_data %>%
+  mutate(
+    dates = ymd(glue("{year} {month} {day}"))
+  )
 ```
 
 ```{r plot-preparedness}
-ggplot(covid_data, mapping = aes(x = date, y = cases, group = country, color = pandemic_prep)) +
+ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = pandemic_prep)) +
   scale_color_viridis_c() +
   geom_line()
 ```
+
+```{r mutate-pan-prep}
+covid_data %>%
+  filter(pandemic_prep > 60) %>%
+ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = pandemic_prep)) +
+  scale_color_viridis_c() +
+  geom_line()
+```
+
+Why is there so much variation in the cumulative deaths per million between countries with relatively high levels of pandemic preparedness? 
