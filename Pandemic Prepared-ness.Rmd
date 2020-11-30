@@ -31,49 +31,45 @@ ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = 
   scale_color_viridis_c() +
   geom_line()
 
-covid_data
-ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million)) +
+ggplot(covid_data, mapping = aes(x = pandemic_prep, y = cases)) +
   geom_point() +
   geom_smooth()
 ```
 ```{r model-preparedness}
-pandemic_prep_model <- lm(deaths_cum_per_million ~ pandemic_prep, data = covid_data)
+pandemic_prep_model <- lm(cases ~ pandemic_prep, data = covid_data)
 
 summary(pandemic_prep_model)
 
-ggplot(pandemic_prep_model, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million)) +
-  geom_point() +
-  geom_smooth()
 ```
 
 ```{r mutate-pan-prep}
 covid_data %>%
   filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = pandemic_prep)) +
+ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = pandemic_prep)) +
   scale_color_viridis_c() +
   geom_line()
 
 covid_data %>%
   filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C5_Close.public.transport)) +
+ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C5_Close.public.transport)) +
   scale_color_viridis_c() +
   geom_line()
 
 covid_data %>%
   filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C6_Stay.at.home.requirements)) +
+ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C6_Stay.at.home.requirements)) +
   scale_color_viridis_c() +
   geom_line()
 
 covid_data %>%
   filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C7_Restrictions.on.internal.movement)) +
+ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C7_Restrictions.on.internal.movement)) +
   scale_color_viridis_c() +
   geom_line()
 
 covid_data %>%
   filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C8_International.travel.controls)) +
+ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C8_International.travel.controls)) +
   scale_color_viridis_c() +
   geom_line()
 ```
