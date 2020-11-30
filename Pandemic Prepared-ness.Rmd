@@ -22,12 +22,28 @@ covid_data <- covid_data %>%
   mutate(
     dates = ymd(glue("{year} {month} {day}"))
   )
+
+covid_data %>%
 ```
 
 ```{r plot-preparedness}
 ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = pandemic_prep)) +
   scale_color_viridis_c() +
   geom_line()
+
+covid_data
+ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million)) +
+  geom_point() +
+  geom_smooth()
+```
+```{r model-preparedness}
+pandemic_prep_model <- lm(deaths_cum_per_million ~ pandemic_prep, data = covid_data)
+
+summary(pandemic_prep_model)
+
+ggplot(pandemic_prep_model, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million)) +
+  geom_point() +
+  geom_smooth()
 ```
 
 ```{r mutate-pan-prep}
