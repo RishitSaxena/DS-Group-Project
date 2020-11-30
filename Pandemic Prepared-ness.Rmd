@@ -9,6 +9,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r load-data}
 covid_data <- read.csv("https://wzb-ipi.github.io/corona/df_full.csv"
 )
+
+covid_data
 ```
 ```{r libraries}
 library(tidyverse)
@@ -32,6 +34,30 @@ ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = 
 covid_data %>%
   filter(pandemic_prep > 60) %>%
 ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = pandemic_prep)) +
+  scale_color_viridis_c() +
+  geom_line()
+
+covid_data %>%
+  filter(pandemic_prep > 60) %>%
+ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C5_Close.public.transport)) +
+  scale_color_viridis_c() +
+  geom_line()
+
+covid_data %>%
+  filter(pandemic_prep > 60) %>%
+ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C6_Stay.at.home.requirements)) +
+  scale_color_viridis_c() +
+  geom_line()
+
+covid_data %>%
+  filter(pandemic_prep > 60) %>%
+ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C7_Restrictions.on.internal.movement)) +
+  scale_color_viridis_c() +
+  geom_line()
+
+covid_data %>%
+  filter(pandemic_prep > 60) %>%
+ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = C8_International.travel.controls)) +
   scale_color_viridis_c() +
   geom_line()
 ```
