@@ -16,62 +16,89 @@ covid_data
 library(tidyverse)
 library(glue)
 library(lubridate)
+library(rms)
 ```
+
 ```{r modify-dates}
 covid_data <- covid_data %>%
   mutate(
     dates = ymd(glue("{year} {month} {day}"))
   )
-
-covid_data %>%
 ```
-
-```{r plot-preparedness}
-ggplot(covid_data, mapping = aes(x = dates, y = deaths_cum_per_million, group = country, color = pandemic_prep)) +
-  scale_color_viridis_c() +
-  geom_line()
-
-ggplot(covid_data, mapping = aes(x = pandemic_prep, y = cases)) +
+```{r plot-pan-prep}
+covid_data %>%
+  filter(date == "2020-11-30") %>%
+  ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth() + 
+  labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
+       x = "Pandemic Preparedness", 
+       y = "Cumulative Deaths per Million")
+
+covid_data %>%
+  filter(date == "2020-11-30") %>%
+  ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million, color = gdp_pc)) +
+  scale_color_viridis_c() +
+  geom_point() +
+  geom_smooth() + 
+  labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
+       x = "Pandemic Preparedness", 
+       y = "Cumulative Deaths per Million")
+
+covid_data %>%
+  filter(date == "2020-11-30") %>%
+  ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million, color = air_travel)) +
+  scale_color_viridis_c() +
+  geom_point() +
+  geom_smooth() + 
+  labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
+       x = "Pandemic Preparedness", 
+       y = "Cumulative Deaths per Million")
 ```
-```{r model-preparedness}
-pandemic_prep_model <- lm(cases ~ pandemic_prep, data = covid_data)
-
-summary(pandemic_prep_model)
-
-```
-
-```{r mutate-pan-prep}
+```{r plot-gdp-air-travel}
 covid_data %>%
-  filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = pandemic_prep)) +
-  scale_color_viridis_c() +
-  geom_line()
-
-covid_data %>%
-  filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C5_Close.public.transport)) +
-  scale_color_viridis_c() +
-  geom_line()
-
-covid_data %>%
-  filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C6_Stay.at.home.requirements)) +
-  scale_color_viridis_c() +
-  geom_line()
-
-covid_data %>%
-  filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C7_Restrictions.on.internal.movement)) +
-  scale_color_viridis_c() +
-  geom_line()
-
-covid_data %>%
-  filter(pandemic_prep > 60) %>%
-ggplot(covid_data, mapping = aes(x = dates, y = deaths, group = country, color = C8_International.travel.controls)) +
-  scale_color_viridis_c() +
-  geom_line()
+  filter(date == "2020-11-30") %>%
+  ggplot(covid_data, mapping = aes(x = gdp_pc, y = air_travel)) +
+  geom_point() +
+  geom_smooth() +
+  labs(title = "Relationship between GDP per Capita and Air Travel",
+       y = "Air Travel", 
+       x = "GDP per Capita")
 ```
 
-Why is there so much variation in the cumulative deaths per million between countries with relatively high levels of pandemic preparedness? 
+```{r plot-combined}
+covid_data %>%
+  filter(date == "2020-11-30") %>%
+  ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million, color = gdp_pc, alpha = air_travel)) +
+  scale_color_viridis_c() +
+  geom_point() +
+  geom_smooth() + 
+  labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
+       x = "Pandemic Preparedness", 
+       y = "Cumulative Deaths per Million") +
+  theme_minimal()
+```
+```{r plot-pan-prep-region}
+covid_data %>%
+  filter(date == "2020-11-30") %>%
+  ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million)) +
+  geom_point() +
+  geom_smooth() + 
+  labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
+       x = "Pandemic Preparedness", 
+       y = "Cumulative Deaths per Million")+
+  facet_wrap(~continent)
+
+covid_data %>%
+  filter(date == "2020-11-30") %>%
+  ggplot(covid_data, mapping = aes(x = pandemic_prep, y = deaths_cum_per_million, color = gdp_pc)) +
+  scale_color_viridis_c() +
+  geom_point() +
+  geom_smooth() + 
+  labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
+       x = "Pandemic Preparedness", 
+       y = "Cumulative Deaths per Million")+
+  facet_wrap(~continent)
+
+```
+
