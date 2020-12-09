@@ -51,8 +51,8 @@ covid_data %>%
        x = "Pandemic Preparedness", 
        y = "Cumulative Deaths per Million", 
        color = "GDP per Capita") +
-  theme(title = element_text(size = 7)) +
-  theme_minimal()
+  theme_minimal()+
+  theme(title = element_text(size = 7))
 ```
 
 ```{r plot-air-travel}
@@ -67,8 +67,8 @@ covid_data %>%
        x = "Pandemic Preparedness", 
        y = "Cumulative Deaths per Million", 
        color = "Air Travel") +
-  theme(title = element_text(size = 7)) + 
-  theme_minimal()
+  theme_minimal()+
+  theme(title = element_text(size = 7))
 
 covid_data %>%
   filter(date == "2020-11-30") %>%
@@ -89,12 +89,12 @@ covid_data %>%
   scale_color_viridis_c() +
   geom_point() +
   stat_smooth(method = "lm") + 
-  labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
+  labs(title = "Pandemic Preparedness and Cumulative Deaths Per Million", 
        x = "Pandemic Preparedness", 
        y = "Cumulative Deaths per Million", 
        color = "Population 65+") +
-  theme(title = element_text(size = 7)) + 
-  theme_minimal()
+  theme_minimal() +
+   theme(title = element_text(size = 7)) 
 
 covid_data %>%
   filter(date == "2020-11-30") %>%
