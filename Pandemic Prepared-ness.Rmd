@@ -36,8 +36,8 @@ covid_data %>%
   labs(title = "Relationship between Pandemic Preparedness and Deaths Per Million", 
        x = "Pandemic Preparedness", 
        y = "Cumulative Deaths per Million") +
-  theme(title = element_text(size = 7)) +
-  theme_minimal()
+  theme_minimal() +
+   theme(title = element_text(size = 7)) 
 ```
 
 ```{r plot-pan-gdp}
@@ -134,16 +134,9 @@ covid_data %>%
   theme_minimal()
 ```
 
-```{r organise-map-data}
-library(maps)
-world_map <- maps::map("world", ".", exact = FALSE, plot = FALSE, fill = TRUE)
-
-ggplot(world_map, mapping = aes(x = long, y = lat, group = group)) +
-  geom_polygon(fill = "gray")
-```
-```{r pandemic-map}
-pandemic_map <- left_join(covid_data, world_map, 
-                          by = c("country" = "region"), 
-                          copy = TRUE)
+```{r age-and-air-travel}
+ggplot(covid_data, mapping = aes(x = share_older, y = air_travel)) +
+  geom_point() +
+  stat_smooth(method = "lm")
 ```
 
