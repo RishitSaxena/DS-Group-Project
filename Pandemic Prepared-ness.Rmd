@@ -1,5 +1,5 @@
 ---
-title: "Pandemic Prepared-ness and COVID-19"
+title: "Pandemic Preparedness and COVID-19"
 author: "Amal Surmawala, Nour Abdelmoneim & Rishit Saxena"
 output:
   prettydoc::html_pretty:
