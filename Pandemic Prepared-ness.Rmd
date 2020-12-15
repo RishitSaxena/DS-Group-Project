@@ -3,7 +3,7 @@ title: "Pandemic Preparedness and COVID-19"
 author: "Amal Surmawala, Nour Abdelmoneim & Rishit Saxena"
 output:
   prettydoc::html_pretty:
-    theme: cayman
+    theme: tufte
     highlight: github
 ---
 
