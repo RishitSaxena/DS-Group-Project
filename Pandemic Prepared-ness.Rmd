@@ -155,7 +155,7 @@ Since no strong conclusions can be drawn from figure six alone, we fit a multiva
 
 As shown below, when we controlled for air travel, the positive correlation between pandemic preparedness and cumulative COVID deaths per million decreased from 9.09 to 7.98. Moreover, the lower end of the uncertainty range decreased from 6.43 to 3.97. From these results, we can conclude that the strong positive correlation between pandemic preparedness and COVID deaths (9.09) was partially due to air travel being higher in countries with higher pandemic preparedness. 
 
-The second confounding variable we decided to explore is age. COVID mortality rates for the older demographic have been significantly higher than the overall mortality rate, in part due to the propensity of this group having pre-existing health complications [SOURCE]. The share of the older population, therefore, has a direct impact on the cumulative COVID deaths per million. This relationship is shown in figure seven.
+The second confounding variable we decided to explore is age. COVID mortality rates for the older demographic have been significantly higher than the overall mortality rate, in part due to the propensity of this group having pre-existing health complications (Ying et al. 283). The share of the older population, therefore, has a direct impact on the cumulative COVID deaths per million. This relationship is shown in figure seven.
 
 ```{r plot-share-older}
 covid_data %>%
@@ -184,7 +184,7 @@ covid_data %>%
 
 ```
 
-In figure eight, pandemic preparedness is plotted against cumulative deaths per million, with the share of older population(aged 65+) mapped to the color aesthetic. The lighter shades represent a higher share of people aged 65+ in a country and can be seen to increase in frequency with respect to darker shade as we move along the positive x-axis. Our theory that better-prepared countries tend to have a higher share of aging population can be seen as evident here. This is also in line with the fact that a higher GDP(a common string tying most of the countries with high pandemic preparedness as we saw in the introduction) leads to a higher life expectancy which in turn leads to an aging population [SOURCE]. 
+In figure eight, pandemic preparedness is plotted against cumulative deaths per million, with the share of older population(aged 65+) mapped to the color aesthetic. The lighter shades represent a higher share of people aged 65+ in a country and can be seen to increase in frequency with respect to darker shade as we move along the positive x-axis. Our theory that better-prepared countries tend to have a higher share of aging population can be seen as evident here. This is also in line with the fact that a higher GDP(a common string tying most of the countries with high pandemic preparedness as we saw in the introduction) leads to a higher life expectancy which in turn leads to an aging population (Miladinov 16). 
 
 To build on the patterns we saw in figures seven and eight, we once again rely on the multivariate linear model(age replacing air travel) to find out the new correlation between pandemic preparedness and cumulative deaths per million when age acts as a confounding variable.
 
@@ -228,7 +228,9 @@ Nielsen, Karina. "Approaches to Seniors' Tourist Behaviour." Tourism Review of A
 
 Ravi, Sanjana J, Warmbrod, Kelsey L, Mullen, Lucia, et al. “The value proposition of the Global Health Security Index.” BMJ Global Health, vol. 5, issue 10, 2020. http://dx.doi.org/10.1136/bmjgh-2020-003648. 
 
+Ying, Kejun, et al. “Genetic and Phenotypic Evidence for the Causal Relationship Between Aging and COVID-19.” MedRxiv, Cold Spring Harbor Laboratory Press, Oct. 2020, p. 2020.08.06.20169854. www.medrxiv.org, doi:10.1101/2020.08.06.20169854.
 
+Miladinov, Goran. “Socioeconomic Development and Life Expectancy Relationship: Evidence from the EU Accession Candidate Countries.” Genus, vol. 76, no. 1, Jan. 2020, p. 2. BioMed Central, doi:10.1186/s41118-019-0071-0.
 
 
 
